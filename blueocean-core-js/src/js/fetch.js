@@ -242,10 +242,7 @@ export const Fetch = {
      * @returns JSON body.
      */
     fetchJSON(url, { onSuccess, onError, fetchOptions, disableCapabilites } = {}) {
-        let fixedUrl = url;
-        if (urlconfig.getJenkinsRootURL() !== '' && !url.startsWith(urlconfig.getJenkinsRootURL())) {
-            fixedUrl = `${urlconfig.getJenkinsRootURL()}${url}`;
-        }
+        const fixedUrl = url;
         let future;
         if (!config.isJWTEnabled()) {
             future = FetchFunctions.rawFetchJSON(fixedUrl, { onSuccess, onError, fetchOptions });
