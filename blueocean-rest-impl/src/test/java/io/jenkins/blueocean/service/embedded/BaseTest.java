@@ -355,6 +355,7 @@ public abstract class BaseTest {
 
         public RequestBuilder jwtToken(String token){
             this.token = token;
+            System.out.println("Set token " + token);
             return this;
         }
 
@@ -480,6 +481,8 @@ public abstract class BaseTest {
         Assert.assertTrue(j > 0);
         String claim = new String(org.jose4j.base64url.Base64.decode(token.substring(i+1, j)));
         Map u = JSONObject.fromObject(claim);
+        System.out.println("Got token " + token);
+        System.out.println("User token " + claim);
         Assert.assertEquals(username,u.get("sub"));
         return token;
     }
