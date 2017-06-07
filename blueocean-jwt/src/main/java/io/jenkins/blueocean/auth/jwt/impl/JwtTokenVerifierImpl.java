@@ -90,10 +90,14 @@ public class JwtTokenVerifierImpl extends JwtTokenVerifier {
                 .build(); // create the JwtConsumer instance
 
             try {
+
+                System.out.println("JAVA TOKEN: " + token);
                 JwtContext context = jwtConsumer.process(token);
                 JwtClaims claims = context.getJwtClaims();
 
                 String subject = claims.getSubject();
+                System.out.println("USER fpr token: " +subject + " " +token);
+
                 if(subject.equals("anonymous")) { //if anonymous, we do not bother checking expiration
                     return Jenkins.ANONYMOUS;
                 }else{
